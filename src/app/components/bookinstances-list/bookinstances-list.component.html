@@ -1,0 +1,43 @@
+<div class="container pt-2">
+    <!-- No data message -->
+    <p *ngIf="bookinstances.length <= 0" class="no-data text-center">There is no book added yet!</p>
+    <!-- Books instances list -->
+    <div class="data-list">
+        <p class="float-end">
+            <a routerLink="/add-book" class="btn btn-primary">Add Book</a>
+        </p>
+        <table class="table table-bordered table-striped table-hover" *ngIf="bookinstances.length > 0">
+            <caption>List of Book instances</caption>
+            <thead class="table-primary">
+                <tr>
+                    <th scope="col">N°</th>
+                    <th scope="col">Book</th>
+                    <th scope="col">Imprint</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Due Back</th>
+                    <th scope="col center">Update</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let bookinstance of bookinstances; let i = index">
+                    <th scope="row">{{i+1}}</th>
+                    <td>{{bookinstance.book.title}}</td>
+                    <td>{{bookinstance.imprint}}</td>
+                    <td [ngClass]="{'text-success':bookinstance.status==='Available', 
+                    'text-danger':bookinstance.status==='Maintenance',
+                    'text-warning':bookinstance.status==='Loaned',
+                    'fw-bold': true}">{{bookinstance.status}}</td>
+                    <td>{{bookinstance.due_back | date:"MMMM d, y"}}</td>
+                    <td class="text-center edit-block">
+                        <span class="edit me-3" [routerLink]="['/edit-book/', bookinstance._id]">
+                            <button type="button" class="btn btn-success btn-sm">Edit</button>
+                        </span>
+                        <span class="delete" (click)="remove(bookinstance._id, i)">
+                            <button type="button" class="btn btn-danger btn-sm">Delete</button>
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
