@@ -35,7 +35,7 @@ export class GenreDetailComponent implements OnInit {
     this.service.update(this.getId, this.updateForm.value)
     .subscribe(() => {
         console.log('Data updated successfully!')
-        this.ngZone.run(() => this.router.navigateByUrl('/genres-list'))
+        this.ngZone.run(() => this.router.navigateByUrl('/admin/genres-list'))
       }, (err) => {
         console.log(err);
     });

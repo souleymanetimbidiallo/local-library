@@ -32,7 +32,7 @@ export class AddGenreComponent implements OnInit {
       this.service.add(this.addForm.value)
         .subscribe(() => {
           console.log('Data added successfully!')
-          this.ngZone.run(() => this.router.navigateByUrl('/genres-list'))
+          this.ngZone.run(() => this.router.navigateByUrl('/admin/genres-list'))
         }, (err) => {
           console.log(err);
         });

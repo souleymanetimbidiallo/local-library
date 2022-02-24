@@ -12,7 +12,7 @@ export class BookService {
   httpHeaders = new HttpHeaders().set('Content-Type', 'application/json');
   constructor(private http: HttpClient) { }
 
-  //CREATE AUTHOR:
+  //CREATE BOOK
   add(data: Book): Observable<any> {
     return this.http.post(this.baseUri, data)
       .pipe(
@@ -20,12 +20,12 @@ export class BookService {
       )
   }
 
-  //GET ALL AUTHORS
+  //GET ALL BOOKS
   getAllData(){
     return this.http.get(`${this.baseUri}`);
   }
 
-  //GET SINGLE AUTHOR
+  //GET SINGLE BOOK
   getSingleData(id: any): Observable<any>{
     let url = `${this.baseUri}/${id}`;
     return this.http.get(url, {headers: this.httpHeaders})
@@ -38,7 +38,7 @@ export class BookService {
   }
 
 
-  //UPDATE AUTHOR
+  //UPDATE BOOK
   update(id:any, data:any): Observable<any> {
     let url = `${this.baseUri}/${id}`;
     return this.http.put(url, data, { headers: this.httpHeaders })
@@ -47,7 +47,7 @@ export class BookService {
       )
   }
 
-  //DELETE AUTHOR
+  //DELETE BOOK
   delete(id:any): Observable<any> {
     let url = `${this.baseUri}/${id}`;
     return this.http.delete(url, { headers: this.httpHeaders }).pipe(

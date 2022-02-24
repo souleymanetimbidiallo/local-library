@@ -4,7 +4,7 @@
     <!-- authors list -->
     <div class="data-list">
         <p class="float-end">
-            <a routerLink="/add-genre" class="btn btn-primary">Add Genre</a>
+            <a routerLink="/admin/add-genre" class="btn btn-primary">Add Genre</a>
         </p>
         <table class="table table-bordered table-striped table-hover" *ngIf="genres.length > 0">
             <caption>List of genres</caption>
@@ -20,7 +20,7 @@
                     <th scope="row">{{i+1}}</th>
                     <td>{{genre.name}}</td>
                     <td class="text-center edit-block">
-                        <span class="edit me-3" [routerLink]="['/edit-genre/', genre._id]">
+                        <span class="edit me-3" [routerLink]="['/admin/edit-genre/', genre._id]">
                             <button type="button" class="btn btn-success btn-sm">Edit</button>
                         </span>
                         <span class="delete" (click)="removeGenre(genre._id, i)">

@@ -10,9 +10,12 @@
   "license": "ISC",
   "dependencies": {
     "async": "^3.2.3",
+    "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
     "express": "^4.17.3",
+    "jsonwebtoken": "^8.5.1",
     "luxon": "^2.3.0",
-    "mongoose": "^6.2.2"
+    "mongoose": "^6.2.2",
+    "mongoose-unique-validator": "^3.0.0"
   }
 }

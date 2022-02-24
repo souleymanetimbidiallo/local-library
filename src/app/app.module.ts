@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { AddAuthorComponent } from './components/add-author/add-author.component';
@@ -18,6 +18,10 @@ import { BookDetailComponent } from './components/book-detail/book-detail.compon
 import { BookinstancesListComponent } from './components/bookinstances-list/bookinstances-list.component';
 import { BookinstanceDetailComponent } from './components/bookinstance-detail/bookinstance-detail.component';
 import { AddBookinstanceComponent } from './components/add-bookinstance/add-bookinstance.component';
+import { LoginComponent } from './auth/login/login.component';
+import { SignupComponent } from './auth/signup/signup.component';
+import { UserProfileComponent } from './auth/user-profile/user-profile.component';
+import { AuthInterceptor } from './interceptors/authconfig.interceptor';
 
 @NgModule({
   declarations: [
@@ -33,7 +37,10 @@ import { AddBookinstanceComponent } from './components/add-bookinstance/add-book
     BookDetailComponent,
     BookinstancesListComponent,
     BookinstanceDetailComponent,
-    AddBookinstanceComponent
+    AddBookinstanceComponent,
+    LoginComponent,
+    SignupComponent,
+    UserProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,7 +49,13 @@ import { AddBookinstanceComponent } from './components/add-bookinstance/add-book
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [AuthorService],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

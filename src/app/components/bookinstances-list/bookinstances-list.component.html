@@ -1,10 +1,10 @@
 <div class="container pt-2">
     <!-- No data message -->
-    <p *ngIf="bookinstances.length <= 0" class="no-data text-center">There is no book added yet!</p>
+    <p *ngIf="bookinstances.length <= 0" class="no-data text-center">There is no bookinstances added yet!</p>
     <!-- Books instances list -->
     <div class="data-list">
         <p class="float-end">
-            <a routerLink="/add-book" class="btn btn-primary">Add Book</a>
+            <a routerLink="/admin/add-bookinstance" class="btn btn-primary">Add bookinstance</a>
         </p>
         <table class="table table-bordered table-striped table-hover" *ngIf="bookinstances.length > 0">
             <caption>List of Book instances</caption>
@@ -29,7 +29,7 @@
                     'fw-bold': true}">{{bookinstance.status}}</td>
                     <td>{{bookinstance.due_back | date:"MMMM d, y"}}</td>
                     <td class="text-center edit-block">
-                        <span class="edit me-3" [routerLink]="['/edit-book/', bookinstance._id]">
+                        <span class="edit me-3" [routerLink]="['/admin/edit-bookinstance/', bookinstance._id]">
                             <button type="button" class="btn btn-success btn-sm">Edit</button>
                         </span>
                         <span class="delete" (click)="remove(bookinstance._id, i)">

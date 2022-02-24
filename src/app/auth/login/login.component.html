@@ -1,0 +1,14 @@
+<div class="auth-wrapper m-5 p-3 border border-danger">
+    <form class="form-signin" [formGroup]="signinForm" (ngSubmit)="loginUser()">
+        <h3 class="h3 mb-3 font-weight-normal text-center">Please Login</h3>
+        <div class="form-group mb-3">
+            <label>Email</label>
+            <input type="email" class="form-control" formControlName="email" placeholder="Enter email" required>
+        </div>
+        <div class="form-group mb-3">
+            <label>Password</label>
+            <input type="password" class="form-control" formControlName="password" placeholder="Password">
+        </div>
+        <button type="submit" class="btn btn-block btn-primary">Login</button>
+    </form>
+</div>

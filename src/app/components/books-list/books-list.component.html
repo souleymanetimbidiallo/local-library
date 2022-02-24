@@ -4,7 +4,7 @@
     <!-- authors list -->
     <div class="data-list">
         <p class="float-end">
-            <a routerLink="/add-book" class="btn btn-primary">Add Book</a>
+            <a routerLink="/admin/add-book" class="btn btn-primary">Add Book</a>
         </p>
         <table class="table table-bordered table-striped table-hover" *ngIf="books.length > 0">
             <caption>List of books</caption>
@@ -13,7 +13,7 @@
                     <th scope="col">N°</th>
                     <th scope="col">Title</th>
                     <th scope="col">Author</th>
-                    <th scope="col">Summary</th>
+                    <th scope="col">Genre</th>
                     <th scope="col">ISBN</th>
                     <th scope="col center">Update</th>
                 </tr>
@@ -23,10 +23,12 @@
                     <th scope="row">{{i+1}}</th>
                     <td>{{book.title}}</td>
                     <td>{{book.author.first_name}} {{book.author.family_name}}</td>
-                    <td>{{book.summary.substring(0, 50)}} ...</td>
+                    <td>
+                        <span *ngFor="let genre of book.genre, let nb =index">{{genre.name}}, </span>
+                    </td>
                     <td>{{book.isbn}}</td>
                     <td class="text-center edit-block">
-                        <span class="edit me-3" [routerLink]="['/edit-book/', book._id]">
+                        <span class="edit me-3" [routerLink]="['/admin/edit-book/', book._id]">
                             <button type="button" class="btn btn-success btn-sm">Edit</button>
                         </span>
                         <span class="delete" (click)="remove(book._id, i)">

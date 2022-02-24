@@ -1,27 +1,31 @@
 <header class="p-3 navbar-dark bg-dark text-white">
     <div class="container">
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" routerLink="/">
             <img src="https://i.imgur.com/PSXxjNY.png" alt="" width="35" class="rounded-circle">
         </a>
+        
 
-
-        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-          <li><a href="#" class="nav-link px-2 text-white border-bottom" aria-current="page">Home</a></li>
-          <li><a class="nav-link px-2 text-white" routerLinkActive="active" routerLink="/authors-list">Authors</a></li>
-          <li><a class="nav-link px-2 text-white" routerLinkActive="active" routerLink="/books-list">Books</a></li>
-          <li><a class="nav-link px-2 text-white" routerLinkActive="active" routerLink="/bookinstances-list">BookInstances</a></li>
-          <li><a class="nav-link px-2 text-white" routerLinkActive="active" routerLink="/genres-list">Genres</a></li>
+        <ul *ngIf="this.authService.isLoggedIn" class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+          
+          <li><a class="nav-link px-2 text-white" routerLinkActive="active" routerLink="/admin/authors-list">Authors</a></li>
+          <li><a class="nav-link px-2 text-white" routerLinkActive="active" routerLink="/admin/books-list">Books</a></li>
+          <li><a class="nav-link px-2 text-white" routerLinkActive="active" routerLink="/admin/bookinstances-list">BookInstances</a></li>
+          <li><a class="nav-link px-2 text-white" routerLinkActive="active" routerLink="/admin/genres-list">Genres</a></li>
         </ul>
 
-        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+        <form *ngIf="this.authService.isLoggedIn" class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
           <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
         </form>
 
-        <div class="text-end">
-          <button type="button" class="btn btn-outline-light me-2">Login</button>
-          <button type="button" class="btn btn-warning">Sign-up</button>
+        <div [ngClass]="{' col-lg -auto me-auto ': !this.authService.isLoggedIn}" class="text-end">
+          <a *ngIf="!this.authService.isLoggedIn" routerLink="/auth/login" routerLinkActive="active" class="btn btn-outline-primary me-2">Login</a>
+          <a  *ngIf="!this.authService.isLoggedIn" routerLink="/auth/signup" routerLinkActive="active" class="btn btn-warning">Sign-up</a>
+          <a [routerLink]="['user-profile/', this.authService.getUserId()]" routerLink="auth/user-profile/" *ngIf="this.authService.isLoggedIn" class="btn btn-warning me-2">User Profile</a>
+          <button (click)="logout()" *ngIf="this.authService.isLoggedIn" type="button"
+          class="btn btn-danger">Logout</button>
         </div>
+        
       </div>
     </div>
   </header>

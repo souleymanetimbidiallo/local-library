@@ -34,7 +34,7 @@ export class AddAuthorComponent implements OnInit {
       this.service.add(this.addForm.value)
         .subscribe(() => {
           console.log('Data added successfully!')
-          this.ngZone.run(() => this.router.navigateByUrl('/authors-list'))
+          this.ngZone.run(() => this.router.navigateByUrl('/admin//authors-list'))
         }, (err) => {
           console.log(err);
         });

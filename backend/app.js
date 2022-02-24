@@ -6,6 +6,7 @@ let express = require('express'),
     
 var indexRouter = require('./routes/index');
 var catalogRouter = require('./routes/catalog');  //Import routes for "catalog" area of site
+var userRouter = require('./routes/user');
 
 
 // Connecting with mongo db
@@ -35,9 +36,11 @@ app.use((req, res, next) => {
 // Static directory path
 app.use(express.static(path.join(__dirname, '../src/assets')));
 
+
 //API root
 app.use('/', indexRouter);
-app.use('/api/catalog', catalogRouter);  // Add catalog routes to middleware chain.ù
+app.use('/api/auth', userRouter);
+app.use('/api/catalog', catalogRouter);  // Add catalog routes to middleware chain.
 
 // 404 Handler
 app.use((req, res, next) => {

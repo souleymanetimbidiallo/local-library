@@ -40,7 +40,7 @@ export class AuthorDetailComponent implements OnInit {
     this.service.update(this.getId, this.updateForm.value)
     .subscribe(() => {
         console.log('Data updated successfully!')
-        this.ngZone.run(() => this.router.navigateByUrl('/authors-list'))
+        this.ngZone.run(() => this.router.navigateByUrl('/admin/authors-list'))
       }, (err) => {
         console.log(err);
     });

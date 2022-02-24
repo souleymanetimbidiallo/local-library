@@ -1,1 +1,27 @@
-<p>book-detail works!</p>
+<div class="row justify-content-center mt-5">
+    <div class="col-md-4">
+        <form [formGroup]="updateForm" (ngSubmit)="onUpdate()">
+          <div class="form-group mb-3">
+            <label for="title">Title</label>
+            <input class="form-control" type="text" formControlName="title" required>
+          </div>
+        <div class="input-group mb-3">
+          <label class="input-group-text" for="author">Author</label>
+          <select class="form-select" id="author" formControlName="author" required>              
+            <option *ngFor="let author of authors" [value]="author._id">{{author.first_name}} {{author.family_name}}</option>
+          </select>
+        </div>
+        <div class="form-floating mb-3">
+          <textarea class="form-control" placeholder="Enter summary" id="summary" style="height: 100px" formControlName="summary" required></textarea>
+          <label for="summary">Summary</label>
+        </div>
+        <div class="form-group">
+          <label for="isbn">ISBN</label>
+          <input class="form-control" type="text" formControlName="isbn" required>
+        </div>
+            <div class="form-group mt-2">
+                <button class="btn btn-primary btn-block" type="submit">Update</button>
+            </div>
+        </form>
+    </div>
+</div>

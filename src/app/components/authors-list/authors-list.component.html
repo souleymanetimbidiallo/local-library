@@ -4,7 +4,7 @@
     <!-- authors list -->
     <div class="data-list">
         <p class="float-end">
-            <a routerLink="/add-author" class="btn btn-primary">Add Author</a>
+            <a routerLink="/admin/add-author" class="btn btn-primary">Add Author</a>
         </p>
         <table class="table table-bordered table-striped table-hover" *ngIf="authors.length > 0">
             <caption>List of authors</caption>
@@ -26,7 +26,7 @@
                     <td>{{author.date_of_birth | date:"MMMM d, y"}}</td>
                     <td>{{author.date_of_death | date:"MMMM d, y"}}</td>
                     <td class="text-center edit-block">
-                        <span class="edit me-3" [routerLink]="['/edit-author/', author._id]">
+                        <span class="edit me-3" [routerLink]="['/admin/edit-author/', author._id]">
                             <button type="button" class="btn btn-success btn-sm">Edit</button>
                         </span>
                         <span class="delete" (click)="removeAuthor(author._id, i)">
