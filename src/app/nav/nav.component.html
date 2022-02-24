@@ -1,0 +1,36 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
+    <mat-toolbar *ngIf="this.authService.isLoggedIn">Menu</mat-toolbar>
+    <mat-nav-list *ngIf="this.authService.isLoggedIn">
+      <a mat-list-item routerLinkActive="active" routerLink="/dashboard">Dashboard</a>
+      <a mat-list-item routerLinkActive="active" routerLink="/admin/authors-list">Authors</a>
+      <a mat-list-item routerLinkActive="active" routerLink="/admin/books-list">Books</a>
+      <a mat-list-item routerLinkActive="active" routerLink="/admin/bookinstances-list">Book Instances</a>
+      <a mat-list-item routerLinkActive="active" routerLink="/admin/genres-list">Genre</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <img src="https://i.imgur.com/PSXxjNY.png" alt="" width="35" class="rounded-circle">
+      <span>Local Library</span>
+
+      <div [ngClass]="{' col-lg -auto me-auto ': !this.authService.isLoggedIn}" class="text-end">
+        <a *ngIf="!this.authService.isLoggedIn" routerLink="/auth/login" routerLinkActive="active"
+          class="btn btn-outline-primary me-2">Login</a>
+        <a *ngIf="!this.authService.isLoggedIn" routerLink="/auth/signup" routerLinkActive="active"
+          class="btn btn-warning">Sign-up</a>
+        <a [routerLink]="['user-profile/', this.authService.getUserId()]" routerLink="auth/user-profile/"
+          *ngIf="this.authService.isLoggedIn" class="btn btn-warning me-2">User Profile</a>
+        <button (click)="logout()" *ngIf="this.authService.isLoggedIn" type="button"
+          class="btn btn-danger">Logout</button>
+      </div>
+    </mat-toolbar>
+    <!-- Add Content Here -->
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
