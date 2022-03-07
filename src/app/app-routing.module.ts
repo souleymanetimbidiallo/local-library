@@ -5,58 +5,122 @@ import { RouterModule, Routes } from "@angular/router";
 import { LoginComponent } from "./auth/login/login.component";
 import { SignupComponent } from "./auth/signup/signup.component";
 import { UserProfileComponent } from "./auth/user-profile/user-profile.component";
-import { AddAuthorComponent } from "./components/add-author/add-author.component";
-import { AddBookComponent } from "./components/add-book/add-book.component";
-import { AddBookinstanceComponent } from "./components/add-bookinstance/add-bookinstance.component";
-import { AddGenreComponent } from "./components/add-genre/add-genre.component";
-import { AuthorDetailComponent } from "./components/author-detail/author-detail.component";
-import { AuthorsListComponent } from "./components/authors-list/authors-list.component";
-import { BookDetailComponent } from "./components/book-detail/book-detail.component";
-import { BookinstanceDetailComponent } from "./components/bookinstance-detail/bookinstance-detail.component";
-import { BookinstancesListComponent } from "./components/bookinstances-list/bookinstances-list.component";
-import { BooksListComponent } from "./components/books-list/books-list.component";
-import { GenreDetailComponent } from "./components/genre-detail/genre-detail.component";
-import { GenresListComponent } from "./components/genres-list/genres-list.component";
-import { DashComponent } from "./dash/dash.component";
+
+import { HomeComponent } from "./components/front/home/home.component";
 import { AuthGuard } from "./services/auth.guard";
 
+import { AddAuthorComponent } from "./components/admin/authors/add-author/add-author.component";
+import { AddBookComponent } from "./components/admin/books/add-book/add-book.component";
+import { AddBookinstanceComponent } from "./components/admin/bookinstances/add-bookinstance/add-bookinstance.component";
+import { AddGenreComponent } from "./components/admin/genres/add-genre/add-genre.component";
+import { DashboardComponent } from "./components/admin/dashboard/dashboard.component";
+import { AuthorDetailComponent } from "./components/admin/authors/author-detail/author-detail.component";
+import { AuthorsListComponent } from "./components/admin/authors/authors-list/authors-list.component";
+import { BookDetailComponent } from "./components/admin/books/book-detail/book-detail.component";
+import { GenresListComponent } from "./components/admin/genres/genres-list/genres-list.component";
+import { GenreDetailComponent } from "./components/admin/genres/genre-detail/genre-detail.component";
+import { BooksListComponent } from "./components/admin/books/books-list/books-list.component";
+import { BookinstancesListComponent } from "./components/admin/bookinstances/bookinstances-list/bookinstances-list.component";
+import { BookinstanceDetailComponent } from "./components/admin/bookinstances/bookinstance-detail/bookinstance-detail.component";
 
 
 const routes: Routes = [
-    { path: '', pathMatch: 'full', redirectTo: 'auth/login' },
+    { path: '', pathMatch: 'full', redirectTo: 'home' },
 
-    /*author routes */
-    { path: 'admin/authors-list', component: AuthorsListComponent, canActivate: [AuthGuard] },
-    { path: 'admin/add-author', component: AddAuthorComponent, canActivate: [AuthGuard] },
-    { path: 'admin/edit-author/:id', component: AuthorDetailComponent, canActivate: [AuthGuard] },
+    {
+        path: 'admin',
+        children: [
+            /* admin routes */
+            { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
 
-    /*genre routes */
-    { path: 'admin/genres-list', component: GenresListComponent, canActivate: [AuthGuard] },
-    { path: 'admin/add-genre', component: AddGenreComponent, canActivate: [AuthGuard] },
-    { path: 'admin/edit-genre/:id', component: GenreDetailComponent, canActivate: [AuthGuard] },
+            /*author routes */
+            {
+                path: 'authors-list',
+                component: AuthorsListComponent,
+                canActivate: [AuthGuard],
+            },
+            {
+                path: 'add-author',
+                component: AddAuthorComponent,
+                canActivate: [AuthGuard],
+            },
+            {
+                path: 'edit-author/:id',
+                component: AuthorDetailComponent,
+                canActivate: [AuthGuard],
+            },
 
-    /*book routes */
-    { path: 'admin/books-list', component: BooksListComponent, canActivate: [AuthGuard] },
-    { path: 'admin/add-book', component: AddBookComponent, canActivate: [AuthGuard] },
-    { path: 'admin/edit-book/:id', component: BookDetailComponent, canActivate: [AuthGuard] },
+            /*genre routes */
+            {
+                path: 'genres-list',
+                component: GenresListComponent,
+                canActivate: [AuthGuard],
+            },
+            {
+                path: 'add-genre',
+                component: AddGenreComponent,
+                canActivate: [AuthGuard],
+            },
+            {
+                path: 'edit-genre/:id',
+                component: GenreDetailComponent,
+                canActivate: [AuthGuard],
+            },
 
-    /*bookinstance routes */
-    { path: 'admin/bookinstances-list', component: BookinstancesListComponent, canActivate: [AuthGuard] },
-    { path: 'admin/add-bookinstance', component: AddBookinstanceComponent, canActivate: [AuthGuard] },
-    { path: 'admin/edit-bookinstance/:id', component: BookinstanceDetailComponent, canActivate: [AuthGuard] },
+            /*book routes */
+            {
+                path: 'books-list',
+                component: BooksListComponent,
+                canActivate: [AuthGuard],
+            },
+            {
+                path: 'add-book',
+                component: AddBookComponent,
+                canActivate: [AuthGuard],
+            },
+            {
+                path: 'edit-book/:id',
+                component: BookDetailComponent,
+                canActivate: [AuthGuard],
+            },
+
+            /*bookinstance routes */
+            {
+                path: 'bookinstances-list',
+                component: BookinstancesListComponent,
+                canActivate: [AuthGuard],
+            },
+            {
+                path: 'add-bookinstance',
+                component: AddBookinstanceComponent,
+                canActivate: [AuthGuard],
+            },
+            {
+                path: 'edit-bookinstance/:id',
+                component: BookinstanceDetailComponent,
+                canActivate: [AuthGuard],
+            },
+        ],
+    },
+
+    {
+        path: 'auth',
+        children: [
+            /*auth routes */
+            { path: 'login', component: LoginComponent },
+            { path: 'signup', component: SignupComponent },
+        ],
+    },
+
+    {
+        path: 'user-profile/:id',
+        component: UserProfileComponent,
+        canActivate: [AuthGuard],
+    },
 
 
 
-    /*auth routes */
-    { path: 'auth/login', component: LoginComponent },
-    { path: 'auth/signup', component: SignupComponent },
-    { path: 'user-profile/:id', component: UserProfileComponent, canActivate: [AuthGuard] },
-
-    /* admin routes */
-    { path: 'dashboard', component: DashComponent },
-
-
-
+    { path: 'home', component: HomeComponent },
 ];
 
 @NgModule({

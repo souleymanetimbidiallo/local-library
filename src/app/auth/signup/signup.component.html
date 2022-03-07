@@ -1,18 +1,23 @@
-<div class="auth-wrapper mt-3 offset-4 col-md-4">
-    <form class="form-signin" [formGroup]="signupForm" (ngSubmit)="registerUser()">
-        <h3 class="h3 mb-3 font-weight-normal text-center">Please sign up</h3>
-        <div class="form-group mb-3">
-            <label>Name</label>
-            <input type="text" class="form-control" formControlName="name" placeholder="Enter name" required>
+<div class="container">
+    <div class="row">
+        <div class="">
+            <form class="form-signin" [formGroup]="signupForm" (ngSubmit)="registerUser()">
+                <h3 class="h3 mb-3 font-weight-normal text-center">Please sign up</h3>
+                <div class="form-group mb-3">
+                    <label>Name</label>
+                    <input type="text" class="form-control" formControlName="name" placeholder="Enter name" required>
+                </div>
+                <div class="form-group mb-3">
+                    <label>Email address</label>
+                    <input type="email" class="form-control" formControlName="email" placeholder="Enter email" required>
+                </div>
+                <div class="form-group mb-3">
+                    <label>Password</label>
+                    <input type="password" class="form-control" formControlName="password" placeholder="Password"
+                        required>
+                </div>
+                <button type="submit" class="btn btn-block btn-primary">Sign up</button>
+            </form>
         </div>
-        <div class="form-group mb-3">
-            <label>Email address</label>
-            <input type="email" class="form-control" formControlName="email" placeholder="Enter email" required>
-        </div>
-        <div class="form-group mb-3">
-            <label>Password</label>
-            <input type="password" class="form-control" formControlName="password" placeholder="Password" required>
-        </div>
-        <button type="submit" class="btn btn-block btn-primary">Sign up</button>
-    </form>
+    </div>
 </div>
