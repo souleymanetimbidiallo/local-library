@@ -34,7 +34,7 @@ app.use((req, res, next) => {
 
 
 // Static directory path
-app.use(express.static(path.join(__dirname, '../src/assets')));
+app.use(express.static(path.join(__dirname, 'dist/local-library')));
 
 
 //API root
@@ -52,7 +52,7 @@ app.get('/', (req, res) => {
     res.send('invaild endpoint');
 });
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../src/index.html'));
+    res.sendFile(path.join(__dirname, 'dist/local-library/index.html'));
 });
 
 // error handler
