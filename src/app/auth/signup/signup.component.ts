@@ -6,11 +6,12 @@ import { AuthService } from 'src/app/services/auth.service';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.scss']
+  styleUrls: ['./signup.component.scss'],
 })
 export class SignupComponent implements OnInit {
-
   signupForm: FormGroup;
+  image!: File;
+
   constructor(
     public fb: FormBuilder,
     public authService: AuthService,
@@ -19,13 +20,30 @@ export class SignupComponent implements OnInit {
     this.signupForm = this.fb.group({
       name: [''],
       email: [''],
-      password: ['']
-    })
+      password: [''],
+      status: ['subscriber'],
+      image: [''],
+    });
   }
-  ngOnInit() { }
-  
+  ngOnInit() {}
+
+  selectImage(event: any) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      console.log(file);
+      this.image = file;
+    }
+  }
+
   registerUser() {
-    this.authService.signup(this.signupForm.value);
+    const formData = new FormData();
+    formData.append('name', this.signupForm.value.name);
+    formData.append('email', this.signupForm.value.email);
+    formData.append('password', this.signupForm.value.password);
+    formData.append('status', this.signupForm.value.status);
+    formData.append('image', this.image);
+    this.authService.signup(formData);
+
     //this.signupForm.reset()
   }
 }

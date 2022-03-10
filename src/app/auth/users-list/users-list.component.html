@@ -1,0 +1,42 @@
+<div class="container pt-2">
+  <!-- No data message -->
+  <p *ngIf="users.length < 1" class="no-data text-center">There is no user added yet!</p>
+  <!-- users list -->
+  <div class="data-list">
+      <p class="float-end">
+          <a routerLink="/auth/signup" class="btn btn-primary">
+              <span class=" pe-2"> <i
+                  class="bi bi-person-plus"></i> </span> Add user</a>
+      </p>
+      <table class="table table-bordered table-striped table-hover" *ngIf="users.length > 0">
+          <caption>List of users</caption>
+          <thead class="table-primary">
+              <tr>
+                  <th scope="col">N°</th>
+                  <th scope="col">Username</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Status</th>
+                  <th scope="col center">Update</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let user of users; let i = index">
+                  <th scope="row">{{i+1}}</th>
+                  <td>{{user.name}}</td>
+                  <td>{{user.email}}</td>
+                  <td>{{user.status}}</td>
+                  <td class="text-center edit-block">
+                      <span class="edit me-3" [routerLink]="['/user-profile/', user._id]">
+                          <button type="button" class="btn btn-success btn-sm"><span class=" pe-2">
+                              <i class="bi bi-person-lines-fill"></i> </span></button>
+                      </span>
+                      <span class="delete" (click)="remove(user._id, i)">
+                          <button type="button" class="btn btn-danger btn-sm"><span class=" pe-2">
+                              <i class="bi bi-trash"></i> </span></button>
+                      </span>
+                  </td>
+              </tr>
+          </tbody>
+      </table>
+  </div>
+</div>

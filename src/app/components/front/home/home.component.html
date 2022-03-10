@@ -1,1 +1,22 @@
-<p>home works!</p>
+<div class="container">
+  <h1>Book reservation.</h1>
+  <div class="row row-cols-1 row-cols-lg-4 row-cols-md-3 row-cols-sm-2 g-4">
+    <div class="col" *ngFor="let book of books">
+      <div class="card h-100">
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcOvFn3dAbybSGsoZRh_5VcaytcVAZyk3Y8XhOd3j7GoGoTGRxdlyssPOM-Bl9c1yjGhA&usqp=CAU"
+          class="card-img-top" alt="...">
+        <div class="card-body">
+          <h4 class="card-title fw-bold">{{book.title}} </h4>
+          <p>by <span class="text-primary">{{book.author.first_name}} {{book.author.family_name}}</span></p>
+          <p class="card-text">{{book.summary | slice:0:150}}</p>
+          <p class="card-text">  <span class="badge rounded-pill bg-warning text-dark me-2" *ngFor="let genre of book.genre, let nb =index">{{genre.name}}</span></p>
+        </div>
+        <div class="card-footer">
+          <a [routerLink]="['/booking/', book._id]" class="btn btn-primary">More details</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

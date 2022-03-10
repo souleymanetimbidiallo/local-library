@@ -1,0 +1,58 @@
+<div class="container rounded bg-white mt-5 mb-5">
+
+  <form enctype="multipart/form-data" [formGroup]="updateForm" (ngSubmit)="onUpdate()">
+    <div class="row">
+      <div class="col-md-3 border-right">
+        <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+          <img class="rounded-circle mt-5" width="150px"
+            src="{{this.avatarUrl}}">
+
+          <div class="input-group mx-auto mt-2">
+            <input type="file" name="image" (change)="selectImage($event)" class="form-control" id="avatar">
+          </div>
+        </div>
+      </div>
+      <div class="col-md-5 border-right">
+        <div class="p-3 py-5">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h4 class="text-center">Profile Settings</h4>
+          </div>
+          <div class="row mt-2">
+            <div class="col-md-6">
+              <label class="labels">Name</label>
+              <input type="text" class="form-control" formControlName="name" id="name" placeholder="Enter your name"
+                required>
+            </div>
+            <div class="col-md-6"><label class="labels">Surname</label><input type="text" class="form-control" value=""
+                placeholder="surname"></div>
+          </div>
+          <div class="row mt-3">
+            <div class="col-md-12">
+              <label class="labels">Email ID</label>
+              <input type="text" class="form-control" type="email" formControlName="email" id="email" required>
+            </div>
+            <div class="col-md-12">
+              <label class="labels">Status</label>
+              <select class="form-select text-capitalize" id="status" formControlName="status" required>
+                <option *ngFor="let  status of allstatus" [value]="status">{{status}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="submit">Save
+              Profile</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="p-3 py-5">
+          <div class="d-flex justify-content-between align-items-center experience"><span>Edit Experience</span><span
+              class="border px-3 p-1 add-experience"><i class="fa fa-plus"></i>&nbsp;Experience</span></div><br>
+          <div class="col-md-12"><label class="labels">Experience in Designing</label><input type="text"
+              class="form-control" placeholder="experience" value=""></div> <br>
+          <div class="col-md-12"><label class="labels">Additional Details</label><input type="text" class="form-control"
+              placeholder="additional details" value=""></div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

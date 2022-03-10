@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <div class="">
-            <form class="form-signin" [formGroup]="signupForm" (ngSubmit)="registerUser()">
+            <form class="form-signin" enctype="multipart/form-data" [formGroup]="signupForm" (ngSubmit)="registerUser()">
                 <h3 class="h3 mb-3 font-weight-normal text-center">Please sign up</h3>
                 <div class="form-group mb-3">
                     <label>Name</label>
@@ -16,6 +16,11 @@
                     <input type="password" class="form-control" formControlName="password" placeholder="Password"
                         required>
                 </div>
+                <div class="input-group mb-3">
+                  <input type="file"  name="image" (change)="selectImage($event)"  class="form-control" id="avatar">
+                  <label class="input-group-text" for="avatar">Upload</label>
+                </div>
+
                 <button type="submit" class="btn btn-block btn-primary">Sign up</button>
             </form>
         </div>

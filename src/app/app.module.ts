@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
+import { FileUploadModule } from 'ng2-file-upload';
 
 import { AppComponent } from './app.component';
 import { AddAuthorComponent } from './components/admin/authors/add-author/add-author.component';
@@ -37,6 +38,9 @@ import { GenresListComponent } from './components/admin/genres/genres-list/genre
 import { BooksListComponent } from './components/admin/books/books-list/books-list.component';
 import { BookinstancesListComponent } from './components/admin/bookinstances/bookinstances-list/bookinstances-list.component';
 import { BookinstanceDetailComponent } from './components/admin/bookinstances/bookinstance-detail/bookinstance-detail.component';
+import { UsersListComponent } from './auth/users-list/users-list.component';
+import { EditUserComponent } from './auth/edit-user/edit-user.component';
+import { BookingPageComponent } from './components/front/booking-page/booking-page.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +62,9 @@ import { BookinstanceDetailComponent } from './components/admin/bookinstances/bo
     UserProfileComponent,
     HomeComponent,
     DashboardComponent,
+    UsersListComponent,
+    EditUserComponent,
+    BookingPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -78,7 +85,8 @@ import { BookinstanceDetailComponent } from './components/admin/bookinstances/bo
     MatMenuModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    FileUploadModule
   ],
   providers: [
     {

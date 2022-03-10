@@ -21,6 +21,7 @@ export class UserProfileComponent implements OnInit {
       this.currentUser.email= res.msg.email;
       this.currentUser.name = res.msg.name;
       this.currentUser.password= res.msg.password;
+      this.currentUser.avatar= res.msg.avatar;
     })
   }
   ngOnInit() { }
